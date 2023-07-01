@@ -1,12 +1,23 @@
 import React from "react";
 import doctor from "../images/doctor.jpg"
 import { Link } from "react-router-dom";
+import {useContextGlobal} from "./utils/Context.jsx"
 
 
 const Card = ({ name, username, id }) => {
 
+  const {state, dispatch} = useContextGlobal()
+
   const addFav = ()=>{
     // Aqui iria la logica para agregar la Card en el localStorage
+    const findDentist = state.data.find( dentist => dentist.id === state.data.id)
+
+    if (!findDentist) {
+      dispatch({type:"ADD_FAV", payload: {name, username, id}})
+      localStorage.setItem("favorito", JSON.stringify(state.data))
+    } else {
+        alert("¡Ya está agregando!")
+    }
   }
 
   return (
@@ -28,8 +39,9 @@ const Card = ({ name, username, id }) => {
 
         <button onClick={addFav} className="favButton">Add fav</button>
         
+
     </div>
   );
 };
 
-export default Card;
+export default Card

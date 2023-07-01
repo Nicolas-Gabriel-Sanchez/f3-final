@@ -16,10 +16,10 @@ const Home = () => {
     })
   }, [])
 
-  const addFav = (medico) =>{
-    localStorage.setItem("medicosFavoritos", )
+  // const addFav = (medico) =>{
+  //   localStorage.setItem("medicosFavoritos", )
 
-  }
+  // }
 
   return (
     <main className="" >

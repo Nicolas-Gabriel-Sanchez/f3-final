@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ContextGlobal } from './utils/global.context'
+import { ContextGlobal } from './utils/Context'
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
