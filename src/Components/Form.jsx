@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useContextGlobal } from '../Components/utils/Context'
 
 
 const Form = () => {
   //Aqui deberan implementar el form completo con sus validaciones
+
+  const {tema} = useContextGlobal()
 
   const [nombre, setNombre] = useState("")
   const [email, setEmail] = useState("")

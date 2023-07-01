@@ -1,13 +1,16 @@
 import { createContext, useContext, useReducer, useState } from "react";
 
+const favoritos = JSON.parse(localStorage.getItem("favorito"))
+const temaGuardo = (localStorage.getItem("temaGuardado"))
 
-
-export const initialState = {theme: "", data: []}
+export const initialState = {theme: temaGuardo ? temaGuardo : "light", data: favoritos ? favoritos : []}
 
 export const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_FAV":
-      return {...state, data: [...state.data, action.payload]}   
+      return {...state, data: [...state.data, action.payload]}
+    case "CHANGE_THEME":
+      return {...state, theme: state.theme == "light" ? "dark" : "light"}   
     default:
       throw new Error()
   }
@@ -21,11 +24,18 @@ export const Context = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  
+  const [tema, setTema] = useState(state.theme == "light")
+
+  const changeTheme = () =>{
+    dispatch({type: "CHANGE_THEME"})
+    setTema(!tema)
+    localStorage.setItem("temaGuardado", state.theme == "light" ? "dark" : "light")
+    
+  }
 
   return (
     <ContextGlobal.Provider value={{
-      state, dispatch
+      state, dispatch, changeTheme, tema
     }}>
       {children}
     </ContextGlobal.Provider>

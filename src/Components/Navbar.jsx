@@ -1,31 +1,22 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ContextGlobal } from './utils/Context'
+import { useContextGlobal } from './utils/Context'
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
 const Navbar = () => {
 
-  // const {dispatch} = useContext(ContextGlobal)
-
-  // const changeTheme = () => {
-  //   dispatch({type:"CHANGE_THEME"})
-  // }
-
-  const [tema, setTema] = useState(true)
-
-  const cambiarTema = () => {
-    setTema(!tema)
-  }
+ const {changeTheme, tema} = useContextGlobal()
 
 
   return (
   
-    <header>
+    <header className={tema ? "header" : "header-dark dark"}>
 
       <h2>DH Odonto</h2>
 
     <nav>
+
 
       {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
       
@@ -35,7 +26,7 @@ const Navbar = () => {
 
       {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
 
-      <button onClick={cambiarTema} className='btn-theme'>
+      <button onClick={changeTheme} className='btn-theme'>
           <span className={tema ? 'sun' : 'sun inactive'}>
           <i class="bi bi-brightness-high-fill"></i>
           </span>

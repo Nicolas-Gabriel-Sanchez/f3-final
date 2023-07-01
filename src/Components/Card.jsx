@@ -8,9 +8,9 @@ const Card = ({ name, username, id }) => {
 
   const {state, dispatch} = useContextGlobal()
 
-  const addFav = ()=>{
+  const addFav = (id)=>{
     // Aqui iria la logica para agregar la Card en el localStorage
-    const findDentist = state.data.find( dentist => dentist.id === state.data.id)
+    const findDentist = state.data.find( dentist => dentist.id === id)
 
     if (!findDentist) {
       dispatch({type:"ADD_FAV", payload: {name, username, id}})
@@ -37,7 +37,7 @@ const Card = ({ name, username, id }) => {
 
         {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
 
-        <button onClick={addFav} className="favButton">Add fav</button>
+        <button onClick={() => addFav(id)} className="favButton">Add fav</button>
         
 
     </div>

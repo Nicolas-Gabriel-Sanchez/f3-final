@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../Components/Card'
+import { useContextGlobal } from '../Components/utils/Context'
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
@@ -7,6 +8,9 @@ const Home = () => {
 
   const [medico, setMedico] = useState([])
   const url = 'https://jsonplaceholder.typicode.com/users'
+
+  const {tema} = useContextGlobal()
+  
 
   useEffect(() => {
     fetch(url).then((response) => response.json())
@@ -22,7 +26,7 @@ const Home = () => {
   // }
 
   return (
-    <main className="" >
+    <main className={tema ? "header" : "header dark"} >
       <h1>Home</h1>
       <div className='card-grid'>
         {/* Aqui deberias renderizar las cards */}

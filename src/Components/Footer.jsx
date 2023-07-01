@@ -4,13 +4,16 @@ import logo1 from "../images/ico-facebook.png"
 import logo2 from "../images/ico-instagram.png"
 import logo3 from "../images/ico-tiktok.png"
 import logo4 from "../images/ico-whatsapp.png"
+import { useContextGlobal } from '../Components/utils/Context'
 
 const Footer = () => {
+
+  const {tema} = useContextGlobal()
 
 
   return (
 
-    <footer>
+    <footer className={tema ? "footer" : "footer dark"}>
 
       <div className='footer-red'>
         <p>Los mejores dentistas</p>

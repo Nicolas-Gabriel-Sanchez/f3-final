@@ -7,13 +7,16 @@ import Home from "./Routes/Home";
 import Contact from "./Routes/Contact";
 import Detail from "./Routes/Detail";
 import Favs from "./Routes/Favs";
+import { useContextGlobal } from '../src/Components/utils/Context'
 
 
 function App() {
 
+  const {tema} = useContextGlobal()
+
   return (
 
-      <div className="App">
+      <div className={tema ? "app" : "app dark"}>
 
           <Navbar/>
 
